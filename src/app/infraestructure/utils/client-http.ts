@@ -1,12 +1,12 @@
+import { authOptions, CustomSession } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
-import {GET} from "@/app/api/auth/[...nextauth]/route";
 
-interface AuthUser {
-  id: string;
-  name: string;
-  email: string;
-  token: string;
-}
+// interface AuthUser {
+//   id: string;
+//   name: string;
+//   email: string;
+//   token: string;
+// }
 
 const defaultBaseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
 export class HttpClient {
@@ -17,14 +17,13 @@ export class HttpClient {
   }
 
   private async getHeader() {
-    const session = await getServerSession(GET) as AuthUser | null;
-    console.log("session", session);
+    const session = await getServerSession(authOptions) as CustomSession;
     
     const headers : Record<string, string> = {
       "Content-Type": "application/json",
     }
-    if (session && session.token){
-      headers["Authorization"] = `Bearer ${session.token}`;
+    if (session && session.user.token){
+      headers["Authorization"] = `Bearer ${session.user.token}`;
     }
     return headers;
   }
@@ -47,7 +46,7 @@ export class HttpClient {
     return this.handleResponse(response);
   }
 
-  async getById<T>(url: string, id: string): Promise<T> {
+  async getById<T>(url: string, id: number | string): Promise<T> {
     const header = await this.getHeader();
     const response = await fetch(`${this.baseUrl}/${url}/${id}`, {
       headers: header,
@@ -56,7 +55,7 @@ export class HttpClient {
     return this.handleResponse(response);
   }
 
-  async delete<T>(url: string, id: string): Promise<T> {
+  async delete<T>(url: string, id: number | string): Promise<T> {
     const header = await this.getHeader();
     const response = await fetch(`${this.baseUrl}/${url}/${id}`, {
       headers: header,
@@ -65,7 +64,7 @@ export class HttpClient {
     return this.handleResponse(response);
   }
 
-  async put<T, R>(url: string, id: string, data: R): Promise<T> {
+  async put<T, R>(url: string, id: number | string, data: R): Promise<T> {
     const header = await this.getHeader();
     const response = await fetch(`${this.baseUrl}/${url}/${id}`, {
       headers: header,

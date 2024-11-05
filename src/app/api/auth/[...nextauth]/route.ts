@@ -15,7 +15,7 @@ interface AuthUser {
   token: string;
 }
 
-interface CustomSession extends Session {
+export interface CustomSession extends Session {
   user: {
     id?: string;
     token?: string;
@@ -25,7 +25,7 @@ interface CustomSession extends Session {
   };
 }
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -79,7 +79,6 @@ const authOptions: NextAuthOptions = {
       const customSession = session as CustomSession;
       customSession.user.id = (token as AuthToken).id;
       customSession.user.token = (token as AuthToken).token;
-      console.log("token", token);
       return customSession;
     },
   },
