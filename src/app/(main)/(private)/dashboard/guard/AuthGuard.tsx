@@ -9,9 +9,8 @@ export default function AuthGuard({
   }: {
     children: React.ReactNode;
   }) {
-    const { data, status} = useSession();
+    const { status} = useSession();
     const router = useRouter();
-    console.log(data, status);
 
     useEffect(()=>{
         if(status === 'unauthenticated'){

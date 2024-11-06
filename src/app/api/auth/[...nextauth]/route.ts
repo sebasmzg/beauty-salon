@@ -79,6 +79,7 @@ export const authOptions: NextAuthOptions = {
       const customSession = session as CustomSession;
       customSession.user.id = (token as AuthToken).id;
       customSession.user.token = (token as AuthToken).token;
+      console.log("token", token)
       return customSession;
     },
   },

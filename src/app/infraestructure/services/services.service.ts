@@ -1,7 +1,7 @@
-import { PServices } from "@/app/core/application/ports/services.port";
+import { PServices } from "@/app/core/application/ports";
 import { HttpClient } from "../utils";
 import { IService, IServicesResponse } from "@/app/core/application/dto";
-import { IServicesRequest } from "@/app/core/application/dto/services/services-request.dto";
+import { IServicesRequest } from "@/app/core/application/dto";
 
 export class ServicesController implements PServices {
 
@@ -11,7 +11,7 @@ private basePath: string = "services";
     constructor(){
         this.clientHttp = new HttpClient();
     }
-    async getServices(page=1, size=5): Promise<IServicesResponse> {
+    async getServices(page=1, size=25): Promise<IServicesResponse> {
         return this.clientHttp.get<IServicesResponse>(`${this.basePath}?page=${page}&size=${size}`)
     }
     async getServiceById(id: number) {

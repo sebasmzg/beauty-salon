@@ -11,6 +11,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { FormField } from "@/ui/molecules";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { FormTitle } from "@/ui/atoms/form-title";
+import { ButtonSubmit } from "@/ui/atoms/Button-submit";
+import { Form } from "@/ui/atoms";
 
 const loginSchema = yup.object().shape({
   userName: yup
@@ -72,11 +75,10 @@ export const LoginForm = () => {
   };
 
   return (
-    <form
-      className="w-full max-w-sm mx-auto p-4 space-y-4"
+    <Form
       onSubmit={handleSubmit(handleLogin)}
     >
-      <h2 className="text-2xl font-semibold text-center">Login</h2>
+      <FormTitle>Login</FormTitle>
       <FormField<ILoginRequest>
         control={control}
         name="userName"
@@ -93,12 +95,7 @@ export const LoginForm = () => {
         error={errors.password}
         placeholder="Enter your password"
       />
-      <button
-        type="submit"
-        className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-400"
-      >
-        Login
-      </button>
-    </form>
+      <ButtonSubmit title="Login" />
+    </Form>
   );
 };

@@ -1,13 +1,6 @@
 import { authOptions, CustomSession } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 
-// interface AuthUser {
-//   id: string;
-//   name: string;
-//   email: string;
-//   token: string;
-// }
-
 const defaultBaseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
 export class HttpClient {
   private baseUrl: string;
@@ -84,6 +77,3 @@ export class HttpClient {
     return this.handleResponse(response);
   }
 }
-
-
-/* await getserversession(authOptions) */
