@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AuthProvider } from "./infraestructure";
+import { ModalProvider } from "./infraestructure";
+import { Modal } from "@/ui/molecules";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,7 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AuthProvider>{children}</AuthProvider>
+        <ModalProvider>
+          <AuthProvider>{children}</AuthProvider>
+          <Modal />
+        </ModalProvider>
       </body>
     </html>
   );
