@@ -6,7 +6,7 @@ import { IAppointment, IAppointmentRequest, IAppointmentResponse } from "@/app/c
 export class AppointmentsServices implements PAppointments {
 
 private clientHttp: HttpClient;
-private basePath: string = "employees";
+private basePath: string = "appointments";
 
     constructor(){
         this.clientHttp = new HttpClient();
