@@ -7,7 +7,7 @@ import { IClientRequest } from "@/app/core/application/dto/clients/client-reques
 export class ClientsServices implements PClients {
 
 private clientHttp: HttpClient;
-private basePath: string = "services";
+private basePath: string = "clients";
 
     constructor(){
         this.clientHttp = new HttpClient();
