@@ -11,7 +11,7 @@ private basePath: string = "services";
     constructor(){
         this.clientHttp = new HttpClient();
     }
-    async getServices(page=1, size=35): Promise<IServicesResponse> {
+    async getServices(page:number, size: number): Promise<IServicesResponse> {
         return this.clientHttp.get<IServicesResponse>(`${this.basePath}?page=${page}&size=${size}`)
     }
     async getServiceById(id: number) {

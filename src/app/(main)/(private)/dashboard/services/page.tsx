@@ -2,6 +2,7 @@
 
 import { useModalContext } from "@/app/infraestructure";
 import { ButtonAdd } from "@/ui/atoms";
+import { Services } from "@/ui/layout/Services";
 import { CreateServiceTemplate } from "@/ui/template";
 import { CardList } from "@/ui/template/services/Card-list";
 import Link from "next/link";
@@ -27,9 +28,7 @@ const ServicesPage = () => {
         <button><Link href={"/dashboard/services/test"}>test</Link></button>
         <ButtonAdd onClick={handleModal}/>
       </div>
-      <div>
-        <CardList/>
-      </div>
+      <Services />
     </div>
   );
 };

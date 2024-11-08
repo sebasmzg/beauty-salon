@@ -1,23 +1,21 @@
 import { IService, IServicesResponse } from "@/app/core/application/dto";
-import { EndPointService } from "@/app/core/application/model";
+import Pagination from "@/ui/molecules/Pagination";
 import Card from "@/ui/organisms/common/Card";
-import useSWR from "swr";
 
 interface CardListProps {
-  currentPage?: number;
-  totalPages?: number;
-  onPageChange?: (page: number) => void;
+  data: IServicesResponse | null;
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
 }
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
 export const CardList = ({
+  data,
   currentPage,
   totalPages,
   onPageChange,
 }: CardListProps) => {
-  const { data, error } = useSWR(EndPointService.GET_SERVICE, fetcher);
-  if (error) return <div>failed to load</div>;
+  
   return (
     <>
       <div className="grid grid-cols-3 gap-4 py-4 px-4">
@@ -33,7 +31,7 @@ export const CardList = ({
           </div>
         )}
       </div>
-      <div>pagination</div>
+      <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
     </>
   );
 };
