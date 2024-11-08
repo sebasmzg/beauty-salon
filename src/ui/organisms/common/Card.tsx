@@ -1,7 +1,4 @@
 import {  IService } from "@/app/core/application/dto";
-import { CiCalendarDate, CiEdit, CiTrash } from "react-icons/ci";
-import { ButtonIcon } from "@/ui/atoms/Button-icon";
-import { ButtonIconWrapper } from "@/ui/atoms/Button-icon-wrapper";
 import { ButtonsWrapper } from "@/ui/atoms/Card-buttons-wrapper";
 
 interface CardProps {

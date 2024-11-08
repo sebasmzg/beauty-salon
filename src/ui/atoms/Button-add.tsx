@@ -16,7 +16,7 @@ export const ButtonAdd = ({onClick}: ButtonAddProps) => {
           stroke="currentColor"
           strokeLinecap="round"
           strokeLinejoin="round"
-          stroke-width={2}
+          strokeWidth={2}
           viewBox="0 0 24 24"
           width="24"
           xmlns="http://www.w3.org/2000/svg"

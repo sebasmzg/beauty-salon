@@ -3,12 +3,12 @@ import { ButtonIcon } from "./Button-icon";
 import { ButtonIconWrapper } from "./Button-icon-wrapper";
 import { useModalContext } from "@/app/infraestructure";
 import { EditServiceFrom } from "../template";
-import { IService } from "@/app/core/application/dto";
+import { IClient, IService } from "@/app/core/application/dto";
 import { EndPointService } from "@/app/core/application/model";
 import Swal from "sweetalert2";
 
 interface ButtonsWrapperProps {
-  itemData: IService;
+  itemData: IService | IClient;
 }
 
 export const ButtonsWrapper = ({ itemData }: ButtonsWrapperProps) => {
@@ -16,7 +16,7 @@ export const ButtonsWrapper = ({ itemData }: ButtonsWrapperProps) => {
 
   const handleEdit = () => {
     console.log("edit", itemData);
-    setModalContent(<EditServiceFrom itemData={itemData} />);
+    setModalContent(<EditServiceFrom itemData={itemData as IService} />);
     openModal();
   };
 
