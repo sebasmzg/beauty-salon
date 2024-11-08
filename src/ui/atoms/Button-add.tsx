@@ -4,11 +4,11 @@ interface ButtonAddProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const ButtonAdd = ({onClick}: ButtonAddProps) => {
   return (
-    <button onClick={onClick} className="rounded-full relative w-36 h-10 cursor-pointer flex items-center border border-gray-700 bg-gray-700 group hover:bg-gray-700 active:bg-gray-700 active:border-gray-700">
+    <button onClick={onClick} className="rounded-full relative w-36 h-10 cursor-pointer flex items-center border border-slate-900 bg-slate-900 group hover:bg-slate-900 active:bg-slate-900 active:border-slate-900">
       <span className="text-white font-semibold ml-8 transform group-hover:hidden transition-all duration-300">
         Add Item
       </span>
-      <span className="absolute right-0 h-full w-10 rounded-full bg-gray-700 flex items-center justify-center transform group-hover:translate-x-0 group-hover:w-full transition-all duration-300">
+      <span className="absolute right-0 h-full w-10 rounded-full bg-slate-900 flex items-center justify-center transform group-hover:translate-x-0 group-hover:w-full transition-all duration-300">
         <svg
           className="svg w-8 text-white"
           fill="none"

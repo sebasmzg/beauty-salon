@@ -18,7 +18,7 @@ export const Input = ({
         type={type}
         name={name}
         placeholder={placeholder}
-        className={`px-4 py-2 border rounded-lg text-gray-700 placeholder:gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${error ? "border-red-500" : "border-gray-300"}`}
+        className={`peer h-10 w-full border-b-2 border-slate-900 text-slate-900 bg-transparent placeholder:transparent focus:outline-none focus:border-amber-500 ${error ? "border-red-500" : "border-gray-300"}`}
         {...props}
       />
       {error && <p className="text-red-500 text-sm mt-1">{error}</p>}

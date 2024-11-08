@@ -17,7 +17,6 @@ export const ModalProvider = ({children}: {children: ReactNode}) => {
     const [ modalContent, setModalContent ] = useState<ReactNode>(null);
 
     const openModal = () => {
-        console.log('open modal');
         setShowModal(true);
     }
 

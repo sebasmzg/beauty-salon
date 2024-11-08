@@ -1,5 +1,5 @@
 import { ServicesController } from "@/app/infraestructure/services/services.service";
-import { CreateServiceTemplate } from "@/ui/template/services/CreateServiceTemplate";
+import { CreateServiceTemplate } from "@/ui/template/services/Form-CreateService";
 
 const service = new ServicesController();
 export default async function Page() {

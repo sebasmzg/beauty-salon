@@ -11,7 +11,7 @@ private basePath: string = "services";
     constructor(){
         this.clientHttp = new HttpClient();
     }
-    async getServices(page=1, size=25): Promise<IServicesResponse> {
+    async getServices(page=1, size=35): Promise<IServicesResponse> {
         return this.clientHttp.get<IServicesResponse>(`${this.basePath}?page=${page}&size=${size}`)
     }
     async getServiceById(id: number) {
@@ -20,10 +20,10 @@ private basePath: string = "services";
     async createService(service: IServicesRequest) {
         return this.clientHttp.post<IService, IServicesRequest>(this.basePath, service)
     }
-    async updateService(id: number, service: IServicesRequest): Promise<IService> {
-        return this.clientHttp.put<IService, IServicesRequest>(this.basePath, id, service)
+    async updateService(id: number, service: IService): Promise<IService> {
+        return this.clientHttp.put<IService, IService>(this.basePath, id, service)
     }
-    async deleteService(id: number): Promise<IService> {
-        return this.clientHttp.delete<IService>(this.basePath, id)
+    async deleteService(id: number) {
+        return this.clientHttp.delete(this.basePath, id)
     }
 }

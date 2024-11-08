@@ -78,7 +78,7 @@ export const LoginForm = () => {
     <Form
       onSubmit={handleSubmit(handleLogin)}
     >
-      <FormTitle>Login</FormTitle>
+      <FormTitle>Sign in your account</FormTitle>
       <FormField<ILoginRequest>
         control={control}
         name="userName"

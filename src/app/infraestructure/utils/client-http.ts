@@ -48,13 +48,17 @@ export class HttpClient {
     return this.handleResponse(response);
   }
 
-  async delete<T>(url: string, id: number | string): Promise<T> {
+  async delete(url: string, id: number | string){
     const header = await this.getHeader();
     const response = await fetch(`${this.baseUrl}/${url}/${id}`, {
       headers: header,
       method: "DELETE",
     });
-    return this.handleResponse(response);
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw errorData;
+    }
+    return response.status === 204 ? { message: "Service deleted" } : await response.json();
   }
 
   async put<T, R>(url: string, id: number | string, data: R): Promise<T> {
