@@ -3,31 +3,33 @@
 import {
   ErrorResponse,
   FieldError,
+  IClient,
+  IClientRequest,
   IService,
 } from "@/app/core/application/dto";
-import { IServicesRequest } from "@/app/core/application/dto";
-import { EndPointService } from "@/app/core/application/model";
+import { EndPointClients, EndPointService } from "@/app/core/application/model";
 import { ButtonSubmit, Form, FormTitle } from "@/ui/atoms";
 import { FormField } from "@/ui/molecules";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
 const createServiceSchema = yup.object().shape({
-  name: yup.string().required("Name is required"),
-  description: yup.string().required("Description is required"),
-  price: yup.number().required("Price is required"),
+  firstName: yup.string().required("Firsname is required"),
+  lastName: yup.string().required("Lastname is required"),
+  email: yup.string().required("Email is required"),
+  phone: yup.string().required("Phone is required").min(10, "Phone must be at least 10 characters"),
 });
 
 interface ServicesFormProps {
   title: string;
   submit: string;
-  itemData?: IService;
+  itemData?: IClient;
   method: string;
 }
 
-export const ServicesForm = ({
+export const ClientsForm = ({
   title,
   submit,
   itemData,
@@ -39,29 +41,31 @@ export const ServicesForm = ({
     setError,
     setValue,
     formState: { errors },
-  } = useForm<IServicesRequest>({
+  } = useForm<IClientRequest>({
     mode: "onChange",
     reValidateMode: "onChange",
     resolver: yupResolver(createServiceSchema),
     defaultValues: {
-      name: itemData?.name || "",
-      description: itemData?.description || "",
-      price: itemData?.price || 0,
+      firstName: itemData?.firstName || "",
+      lastName: itemData?.lastName || "",
+      email: itemData?.email || "",
+      phone: itemData?.phone || "",
     },
   });
 
   useEffect(() => {
     if (itemData) {
-      setValue("name", itemData.name);
-      setValue("description", itemData.description);
-      setValue("price", itemData.price);
+      setValue("firstName", itemData.firstName);
+      setValue("lastName", itemData.lastName);
+      setValue("email", itemData.email);
+      setValue("phone", itemData.phone);
     }
   }, [itemData, setValue]);
 
-  const createService = async (data: IServicesRequest) => {
+  const createService = async (data: IClientRequest) => {
     try {
       console.log("fetching");
-      const response = await fetch(EndPointService.CREATE_SERVICE, {
+      const response = await fetch(EndPointClients.CREATE_CLIENT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -80,7 +84,7 @@ export const ServicesForm = ({
     }
   };
 
-  const updateService = async (data: IService) => {
+  const updateService = async (data: IClient) => {
     console.log("trying to edit service", data);
     try {
       console.log("editing service");
@@ -109,49 +113,56 @@ export const ServicesForm = ({
       if (Array.isArray(errorData.errors) && "field" in errorData.errors[0]) {
         errorData.errors.forEach((fieldError) => {
           const { field, error } = fieldError as FieldError;
-          setError(field as keyof IServicesRequest, {
+          setError(field as keyof IClientRequest, {
             message: error,
           });
         });
       } else {
         if ("message" in errorData.errors[0]) {
-          setError("name", { message: errorData.errors[0].message });
+          setError("firstName", { message: errorData.errors[0].message });
         }
       }
     }
   };
 
-  const onSubmit = (data: IServicesRequest | IService) => {
+  const onSubmit = (data: IClientRequest | IService) => {
     if (method === "PUT" && itemData) {
-      updateService({ ...(data), id: itemData.id } as IService);
+      updateService({ ...data, id: itemData.id } as IClient);
     } else {
-      createService(data as IServicesRequest);
+      createService(data as IClientRequest);
     }
   };
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormTitle>{title}</FormTitle>
-      <FormField<IServicesRequest>
+      <FormField<IClientRequest>
         control={control}
-        name="name"
-        label="Name"
+        name="firstName"
+        label="Firstname"
         type="text"
-        error={errors.name}
+        error={errors.firstName}
       />
-      <FormField<IServicesRequest>
+      <FormField<IClientRequest>
         control={control}
-        name="description"
-        label="Description"
+        name="lastName"
+        label="Lastname"
         type="text"
-        error={errors.description}
+        error={errors.lastName}
       />
-      <FormField<IServicesRequest>
+      <FormField<IClientRequest>
         control={control}
-        name="price"
-        label="Price"
+        name="email"
+        label="Email"
+        type="email"
+        error={errors.email}
+      />
+      <FormField<IClientRequest>
+        control={control}
+        name="phone"
+        label="Phone"
         type="number"
-        error={errors.price}
+        error={errors.phone}
       />
       <ButtonSubmit title={submit} />
     </Form>

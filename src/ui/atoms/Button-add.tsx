@@ -6,7 +6,7 @@ export const ButtonAdd = ({onClick}: ButtonAddProps) => {
   return (
     <button onClick={onClick} className="rounded-full relative w-36 h-10 cursor-pointer flex items-center border border-slate-900 bg-slate-900 group hover:bg-slate-900 active:bg-slate-900 active:border-slate-900">
       <span className="text-white font-semibold ml-8 transform group-hover:hidden transition-all duration-300">
-        Add Item
+        Add New
       </span>
       <span className="absolute right-0 h-full w-10 rounded-full bg-slate-900 flex items-center justify-center transform group-hover:translate-x-0 group-hover:w-full transition-all duration-300">
         <svg
@@ -14,9 +14,9 @@ export const ButtonAdd = ({onClick}: ButtonAddProps) => {
           fill="none"
           height="24"
           stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          stroke-width={2}
           viewBox="0 0 24 24"
           width="24"
           xmlns="http://www.w3.org/2000/svg"
