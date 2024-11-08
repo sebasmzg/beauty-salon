@@ -1,12 +1,12 @@
 import { Pageable, Sort } from "../common/pagination.dto";
 
-export interface IServicesResponse {
+export interface IEmployeesResponse {
     totalPages:       number;
     totalElements:    number;
     pageable:         Pageable;
     numberOfElements: number;
     size:             number;
-    content:          IService[];
+    content:          IEmployee[];
     number:           number;
     sort:             Sort[];
     first:            boolean;
@@ -14,9 +14,11 @@ export interface IServicesResponse {
     empty:            boolean;
 }
 
-export interface IService {
-    id:          number;
-    name:        string;
-    description: string;
-    price:       number;
+export interface IEmployee {
+    id:        number;
+    firstName: string;
+    lastName:  string;
+    email:     string;
+    phone:     string;
+    role:      string;
 }

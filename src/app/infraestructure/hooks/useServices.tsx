@@ -9,7 +9,7 @@ export const useServices = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [totalPages, setTotalPages] = useState<number>(1);
 
-    const getServices = async (page: number = 1, size: number = 6) => {
+    const getServices = async (page: number = 1, size: number = 9) => {
         const response = await fetch(`${EndPointService.GET_SERVICE}?page=${page}&size=${size}`);
         if(!response.ok) {
             console.error('Error getting services:', response.statusText);

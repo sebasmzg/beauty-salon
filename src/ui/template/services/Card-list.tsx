@@ -17,7 +17,7 @@ export const CardList = ({
 }: CardListProps) => {
   
   return (
-    <>
+    <div className="flex flex-col">
       <div className="grid grid-cols-3 gap-4 py-4 px-4">
         {data && data.content && data.content.length > 0 ? (
           data.content.map((service: IService) => (
@@ -31,7 +31,9 @@ export const CardList = ({
           </div>
         )}
       </div>
-      <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
-    </>
+      <div className="justify-items-center">
+        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
+      </div>
+    </div>
   );
 };
