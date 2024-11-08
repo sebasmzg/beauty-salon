@@ -1,0 +1,20 @@
+import { IAppointment } from "@/app/core/application/dto";
+import { AppointmentsServices } from "@/app/infraestructure";
+import { NextResponse } from "next/server";
+
+export const PUT = async (req: Request) => {
+    try {
+        const appointments = new AppointmentsServices();
+        const data: IAppointment = await req.json();
+        const { id } = data;
+        if(!id){
+            return new NextResponse(JSON.stringify({ message: "Service ID is required" }), { status: 400 });
+        }
+        console.log('Received service data:', data);
+        const updatedService = await appointments.updateAppointment(id, data);
+        return NextResponse.json(updatedService, { status: 200 });
+    } catch (error) {
+        console.error('Error updating service:', error);
+        return new NextResponse(JSON.stringify({ message: "Error updating service" }), { status: 500 });
+    }
+}

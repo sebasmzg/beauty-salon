@@ -1,3 +1,5 @@
+export * from './appointments/appointment-request.dto';
+export * from './appointments/appointment-response.dto';
 export * from './auth/login-request.dt';
 export * from './auth/login-response.dto';
 export * from './clients/client-request.dto';

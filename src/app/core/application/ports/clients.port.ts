@@ -1,5 +1,4 @@
-import { IClientRequest } from "../dto/clients/client-request.dto";
-import { IClient, IClientResponse } from "../dto/clients/client-response.dto";
+import { IClient, IClientRequest, IClientResponse } from "../dto";
 
 export interface PClients {
     /**

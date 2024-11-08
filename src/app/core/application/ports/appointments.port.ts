@@ -1,27 +1,27 @@
-import { IService, IServicesRequest, IServicesResponse } from "../dto";
+import { IAppointment, IAppointmentRequest, IAppointmentResponse } from "../dto";
 
-export interface PServices  {
+export interface PAppointments {
     /**
      * Fetches the list of services.
      * @param page The page number to fetch.
      * @param size The number of elements to fetch.
      * @returns A promise that resolves to the services response.
      */
-    getServices(page: number, size: number): Promise<IServicesResponse>
+    getAppointments(page: number, size: number): Promise<IAppointmentResponse>
 
     /**
      * Fetches a service by its id.
      * @param id The id of the service to fetch.
      * @returns A promise that resolves to the service response.
      */
-    getServiceById(id: number): Promise<IService>
+    getAppointmentById(id: number): Promise<IAppointment>
 
     /**
      * Creates a new service.
      * @param service The service to create.
      * @returns A promise that resolves to the created service.
      */
-    createService(service: IServicesRequest): Promise<IService>
+    createAppointment(service: IAppointmentRequest): Promise<IAppointment>
 
     /**
      * Updates a service.
@@ -29,12 +29,12 @@ export interface PServices  {
      * @param service The service to update.
      * @returns A promise that resolves to the updated service.
      */
-    updateService(id: number, service: IServicesRequest): Promise<IService>
+    updateAppointment(id: number, service: IAppointment): Promise<IAppointment>
 
     /**
      * Deletes a service.
      * @param id The id of the service to delete.
      * @returns A promise that resolves to the deleted service.
      */
-    deleteService(id: number): Promise<IService>
+    deleteAppointment(id: number): Promise<IAppointment>
 }
