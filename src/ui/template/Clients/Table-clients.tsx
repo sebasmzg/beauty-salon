@@ -68,7 +68,7 @@ export const TableClients = ({
           </tbody>
         </table>
       </div>
-      <div className="justify-items-center">
+      <div className="justify-items-center mt-3">
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}

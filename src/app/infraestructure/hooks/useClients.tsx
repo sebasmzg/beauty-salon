@@ -9,7 +9,7 @@ export const useClients = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [totalPages, setTotalPages] = useState<number>(1);
 
-    const getClients = async (page: number = 1, size: number = 20) => {
+    const getClients = async (page: number = 1, size: number = 10) => {
         const response = await fetch(`${EndPointClients.GET_CLIENT}?page=${page}&size=${size}`);
         if(!response.ok) {
             console.error('Error getting clients:', response.statusText);
